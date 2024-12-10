@@ -19,7 +19,13 @@ The application will be available at <http://localhost:3000> regardless of which
 Install dependencies and start the development server:
 
 ```bash
+# Navigate to the teleprompter app
+cd apps/teleprompter
+
+# Install dependencies
 npm install
+
+# Start the development server
 npm run dev
 ```
 
