@@ -40,103 +40,118 @@ export function TeleprompterView({ script, onClose }: TeleprompterViewProps) {
   }, [isPlaying, speed])
 
   return (
-    <div className="fixed inset-0 flex flex-col">
+    <div className="fixed inset-0 flex flex-col bg-background">
       <div
-        className="flex-grow overflow-hidden"
+        className="flex-grow overflow-hidden relative"
         style={{
           paddingLeft: `${margin}%`,
           paddingRight: `${margin}%`,
         }}
       >
         <div
-          className="h-full overflow-hidden"
+          className="absolute w-full transition-transform duration-100"
           style={{
             transform: `translateY(-${scrollPosition}px)`,
           }}
         >
           <p
-            className={`whitespace-pre-wrap ${
+            className={`whitespace-pre-wrap py-[50vh] ${
               alignment === "center" ? "text-center" : "text-left"
             }`}
-            style={{ fontSize: `${fontSize}px` }}
+            style={{ fontSize: `${fontSize}px`, lineHeight: '1.4' }}
           >
             {script}
           </p>
         </div>
       </div>
-      <div className="bg-background/80 backdrop-blur-sm p-4 space-y-4">
-        <div className="flex justify-between items-center">
-          <Button
-            variant="outline"
-            size="icon"
-            onClick={() => setIsPlaying(!isPlaying)}
-          >
-            {isPlaying ? <Pause className="h-4 w-4" /> : <Play className="h-4 w-4" />}
-          </Button>
-          <Button variant="outline" size="sm" onClick={onClose}>
-            Close
-          </Button>
-        </div>
-        <div className="grid grid-cols-2 gap-4">
-          <div className="space-y-2">
-            <label className="text-sm font-medium">Font Size</label>
-            <Slider
-              min={12}
-              max={72}
-              step={1}
-              value={[fontSize]}
-              onValueChange={([value]) => setFontSize(value)}
-            />
-          </div>
-          <div className="space-y-2">
-            <label className="text-sm font-medium">Margin</label>
-            <Slider
-              min={0}
-              max={40}
-              step={1}
-              value={[margin]}
-              onValueChange={([value]) => setMargin(value)}
-            />
-          </div>
-          <div className="space-y-2">
-            <label className="text-sm font-medium">Speed</label>
-            <Slider
-              min={1}
-              max={100}
-              step={1}
-              value={[speed]}
-              onValueChange={([value]) => setSpeed(value)}
-            />
-          </div>
-          <div className="space-y-2">
-            <label className="text-sm font-medium">Alignment</label>
-            <div className="flex space-x-2">
-              <Toggle
-                pressed={alignment === "left"}
-                onPressedChange={() => setAlignment("left")}
+      
+      <div className="fixed bottom-0 left-0 right-0 bg-background/95 backdrop-blur-sm border-t">
+        <div className="max-w-4xl mx-auto p-4 space-y-4">
+          <div className="flex items-center justify-between gap-4">
+            <div className="flex items-center gap-2">
+              <Button
+                variant="outline"
+                size="icon"
+                onClick={() => setIsPlaying(!isPlaying)}
               >
-                <AlignLeft className="h-4 w-4" />
-              </Toggle>
+                {isPlaying ? <Pause className="h-4 w-4" /> : <Play className="h-4 w-4" />}
+              </Button>
+              <div className="flex items-center gap-2">
+                <Toggle
+                  pressed={alignment === "left"}
+                  onPressedChange={() => setAlignment("left")}
+                  variant="outline"
+                >
+                  <AlignLeft className="h-4 w-4" />
+                </Toggle>
+                <Toggle
+                  pressed={alignment === "center"}
+                  onPressedChange={() => setAlignment("center")}
+                  variant="outline"
+                >
+                  <AlignCenter className="h-4 w-4" />
+                </Toggle>
+              </div>
+            </div>
+            <div className="flex items-center gap-2">
               <Toggle
-                pressed={alignment === "center"}
-                onPressedChange={() => setAlignment("center")}
+                pressed={theme === "dark"}
+                onPressedChange={() => setTheme(theme === "light" ? "dark" : "light")}
+                variant="outline"
               >
-                <AlignCenter className="h-4 w-4" />
+                {theme === "light" ? (
+                  <Sun className="h-4 w-4" />
+                ) : (
+                  <Moon className="h-4 w-4" />
+                )}
               </Toggle>
+              <Button variant="outline" size="sm" onClick={onClose}>
+                Close
+              </Button>
             </div>
           </div>
-        </div>
-        <div className="flex justify-end">
-          <Toggle
-            pressed={theme === "dark"}
-            onPressedChange={() => setTheme(theme === "light" ? "dark" : "light")}
-          >
-            {theme === "light" ? (
-              <Sun className="h-4 w-4" />
-            ) : (
-              <Moon className="h-4 w-4" />
-            )}
-          </Toggle>
+          
+          <div className="grid grid-cols-3 gap-6">
+            <div className="space-y-2">
+              <label className="text-sm font-medium flex justify-between">
+                Font Size
+                <span>{fontSize}px</span>
+              </label>
+              <Slider
+                min={12}
+                max={72}
+                step={1}
+                value={[fontSize]}
+                onValueChange={([value]) => setFontSize(value)}
+              />
+            </div>
+            <div className="space-y-2">
+              <label className="text-sm font-medium flex justify-between">
+                Margin
+                <span>{margin}%</span>
+              </label>
+              <Slider
+                min={0}
+                max={40}
+                step={1}
+                value={[margin]}
+                onValueChange={([value]) => setMargin(value)}
+              />
+            </div>
+            <div className="space-y-2">
+              <label className="text-sm font-medium flex justify-between">
+                Speed
+                <span>{speed}</span>
+              </label>
+              <Slider
+                min={1}
+                max={100}
+                step={1}
+                value={[speed]}
+                onValueChange={([value]) => setSpeed(value)}
+              />
+            </div>
+          </div>
         </div>
       </div>
     </div>

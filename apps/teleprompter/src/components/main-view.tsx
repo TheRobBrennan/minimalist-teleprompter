@@ -14,15 +14,16 @@ export function MainView() {
   }
 
   return (
-    <div className="w-full max-w-2xl space-y-4">
+    <div className="w-full max-w-4xl space-y-6 px-4">
+      <h1 className="text-2xl font-bold text-center mb-8">Teleprompter</h1>
       <Textarea
         placeholder="Type or paste your script here..."
-        className="min-h-[300px]"
+        className="min-h-[50vh] text-lg p-6 resize-none"
         value={script}
         onChange={(e) => setScript(e.target.value)}
       />
       <Button
-        className="w-full"
+        className="w-full max-w-md mx-auto block"
         size="lg"
         onClick={() => setIsStarted(true)}
         disabled={!script.trim()}
