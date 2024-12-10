@@ -6,7 +6,11 @@
     "dev": "npm run dev --prefix apps/teleprompter",
     "build": "npm run build --prefix apps/teleprompter",
     "start": "npm run start --prefix apps/teleprompter",
-    "lint": "npm run lint --prefix apps/teleprompter"
+    "lint": "npm run lint --prefix apps/teleprompter",
+    "docker:build": "docker compose build",
+    "docker:up": "docker compose up",
+    "docker:up:detach": "docker compose up -d",
+    "docker:down": "docker compose down"
   },
   "repository": {
     "type": "git",
