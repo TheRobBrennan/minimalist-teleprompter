@@ -1,0 +1,19 @@
+{
+  "name": "minimalist-teleprompter",
+  "version": "0.0.0",
+  "description": "This project is going to explore how to use Cursor, v0, Next.js, and Vercel to build and deploy a simple web app.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TheRobBrennan/minimalist-teleprompter.git"
+  },
+  "author": "Rob Brennan <rob@sploosh.ai>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/TheRobBrennan/minimalist-teleprompter/issues"
+  },
+  "homepage": "https://github.com/TheRobBrennan/minimalist-teleprompter#readme"
+}
