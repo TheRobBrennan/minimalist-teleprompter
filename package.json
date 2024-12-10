@@ -3,7 +3,10 @@
   "version": "0.0.0",
   "description": "This project is going to explore how to use Cursor, v0, Next.js, and Vercel to build and deploy a simple web app.",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "npm run dev --prefix apps/teleprompter",
+    "build": "npm run build --prefix apps/teleprompter",
+    "start": "npm run start --prefix apps/teleprompter",
+    "lint": "npm run lint --prefix apps/teleprompter"
   },
   "repository": {
     "type": "git",
